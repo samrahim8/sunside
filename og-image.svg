@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FAF6F0"/>
+
+  <!-- Subtle warm gradient overlay -->
+  <defs>
+    <radialGradient id="warmGlow" cx="50%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#D4A04A" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#D4A04A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#warmGlow)"/>
+
+  <!-- Sunrise motif - larger version -->
+  <path d="M300 480 Q600 320 900 480" stroke="#D4A04A" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <line x1="250" y1="500" x2="950" y2="500" stroke="#D4A04A" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- SUNSIDE wordmark -->
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="120" font-weight="700" fill="#8B3A3A" letter-spacing="-2">SUNSIDE</text>
+
+  <!-- Tagline -->
+  <text x="600" y="370" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" fill="#555555">Your neighbor's guide to Horizon West.</text>
+
+  <!-- Footer text -->
+  <text x="600" y="560" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#555555" opacity="0.6" letter-spacing="2">EVERY FRIDAY MORNING</text>
+</svg>
