@@ -236,30 +236,10 @@
     .email-form button:active { transform: scale(0.97); }
 
     .success-message {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 1rem 1.5rem;
-      background: var(--white);
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      box-shadow: 0 2px 20px rgba(44, 44, 44, 0.08);
-    }
-
-    .success-check {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      background: var(--ochre);
-      color: var(--white);
-      border-radius: 50%;
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--terracotta);
     }
 
     .hero-note {
@@ -675,10 +655,7 @@
           if (data.success) {
             const wrapper = form.parentElement;
             wrapper.innerHTML = `
-              <div class="success-message">
-                <span class="success-check">&#10003;</span>
-                You're in! Check your inbox.
-              </div>
+              <p class="success-message">You're in! Check your inbox.</p>
             `;
           } else {
             button.textContent = 'Try again';
