@@ -291,25 +291,31 @@
     }
 
     .live-stats {
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--charcoal-light);
+      gap: 1rem;
+      flex-wrap: wrap;
       opacity: 0;
-      animation: fadeUpSubtle 0.8s ease-out 1.1s forwards;
+      animation: fadeUp 0.8s ease-out 1.1s forwards;
     }
 
     .stat {
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.4rem;
+      padding: 0.6rem 1rem;
+      background: var(--white);
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      box-shadow: 0 2px 12px rgba(44, 44, 44, 0.06);
     }
 
     .stat-divider {
-      opacity: 0.4;
+      display: none;
     }
 
     .scroll-hint {
@@ -618,7 +624,7 @@
       <div class="live-stats">
         <span class="stat"><span id="weather">☀️ --°F</span></span>
         <span class="stat-divider">·</span>
-        <span class="stat">🏠 $540K median</span>
+        <span class="stat">🏠 $583K median</span>
         <span class="stat-divider">·</span>
         <span class="stat">🚗 ~15 min to Disney</span>
       </div>
