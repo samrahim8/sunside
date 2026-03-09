@@ -38,26 +38,13 @@
       position: relative;
     }
 
-    body::after {
-      content: '';
+    .grain {
       position: fixed;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.04;
-      background-image:
-        repeating-conic-gradient(rgba(44, 44, 44, 0.08) 0% 25%, transparent 0% 50%);
-      background-size: 3px 3px;
-      animation: grainShift 0.5s steps(1) infinite;
-    }
-
-    @keyframes grainShift {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(-1px, 1px); }
-      50% { transform: translate(1px, -1px); }
-      75% { transform: translate(-1px, -1px); }
-      100% { transform: translate(1px, 1px); }
+      opacity: 0.4;
     }
 
     .ticker {
@@ -516,6 +503,15 @@
   </style>
 </head>
 <body>
+
+  <!-- Grain overlay -->
+  <svg class="grain" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)"/>
+  </svg>
 
   <div class="ticker">
     <div class="ticker-track">
