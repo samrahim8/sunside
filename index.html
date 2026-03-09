@@ -175,15 +175,26 @@
       max-width: 640px;
     }
 
-    .hero-greeting {
-      font-size: 0.875rem;
+    .hero-time-greeting {
+      font-size: 0.65rem;
+      color: var(--charcoal-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUpMuted 0.8s ease-out 0.1s forwards;
+    }
+
+    .hero-welcome {
+      font-size: 0.9rem;
       color: var(--ochre);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
       opacity: 0;
-      animation: fadeUp 0.8s ease-out 0.1s forwards;
+      animation: fadeUp 0.8s ease-out 0.15s forwards;
     }
 
     .hero-wordmark {
@@ -653,7 +664,8 @@
 
   <section class="hero">
     <div class="hero-content">
-      <p class="hero-greeting" id="greeting"></p>
+      <p class="hero-time-greeting" id="greeting"></p>
+      <p class="hero-welcome">Welcome to</p>
       <div class="hero-wordmark">SUNSIDE</div>
       <p class="hero-tagline">The best way to keep up with Horizon West.</p>
       <div class="email-form-wrapper">
