@@ -32,6 +32,28 @@
       --white: #FFFFFF;
     }
 
+    [data-theme="night"] {
+      --cream: #1a1a1a;
+      --cream-dark: #252525;
+      --charcoal: #FAF6F0;
+      --charcoal-light: #c9c4bc;
+      --white: #2a2a2a;
+      --terracotta: #c9706f;
+      --terracotta-light: #d48a89;
+    }
+
+    [data-theme="night"] .ticker {
+      background: #1a2e26;
+    }
+
+    [data-theme="night"] .footer {
+      background: var(--cream);
+    }
+
+    [data-theme="night"] .cta {
+      background: #6b2a2a;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
@@ -131,6 +153,17 @@
       position: relative;
       z-index: 1;
       max-width: 640px;
+    }
+
+    .hero-greeting {
+      font-size: 0.875rem;
+      color: var(--ochre);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.1s forwards;
     }
 
     .hero-wordmark {
@@ -550,6 +583,7 @@
 
   <section class="hero">
     <div class="hero-content">
+      <p class="hero-greeting" id="greeting"></p>
       <div class="hero-wordmark">SUNSIDE</div>
       <p class="hero-tagline">The best way to keep up with Horizon West.</p>
       <div class="email-form-wrapper">
@@ -558,7 +592,7 @@
           <button type="submit">Subscribe</button>
         </form>
       </div>
-      <p class="hero-note">Free. Next issue in <span id="countdown"></span></p>
+      <p class="hero-note">Free. Next issue drops in <span id="countdown"></span></p>
     </div>
     <a href="#what" class="scroll-hint" aria-label="Scroll down">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -671,6 +705,25 @@
         }
       });
     });
+
+    // Dynamic greeting and theme based on time
+    (function() {
+      const hour = new Date().getHours();
+      let greeting = 'Good evening';
+
+      if (hour >= 5 && hour < 12) {
+        greeting = 'Good morning';
+      } else if (hour >= 12 && hour < 17) {
+        greeting = 'Good afternoon';
+      }
+
+      document.getElementById('greeting').textContent = greeting;
+
+      // Night mode: 7pm - 6am
+      if (hour >= 19 || hour < 6) {
+        document.documentElement.setAttribute('data-theme', 'night');
+      }
+    })();
 
     // Countdown to next Friday 8am ET
     function updateCountdown() {
