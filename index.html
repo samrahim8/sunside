@@ -54,6 +54,21 @@
       background: #6b2a2a;
     }
 
+    [data-theme="night"] .weather-card {
+      background: linear-gradient(145deg, rgba(40,40,40,0.9), rgba(30,30,30,0.7));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    [data-theme="night"] .email-form input[type="email"] {
+      background: #2a2a2a;
+      border-color: #3a3a3a;
+      color: var(--charcoal);
+    }
+
+    [data-theme="night"] .email-form input[type="email"]::placeholder {
+      color: #888;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
