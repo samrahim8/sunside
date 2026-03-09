@@ -645,13 +645,28 @@
 
         button.textContent = '...';
         button.disabled = true;
-        form.classList.add('success');
 
-        await new Promise(r => setTimeout(r, 400));
-        button.textContent = "You're in!";
-        await new Promise(r => setTimeout(r, 800));
+        try {
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
 
-        window.location.href = `https://readsunside.beehiiv.com/subscribe?email=${encodeURIComponent(email)}`;
+          const data = await response.json();
+
+          if (data.success) {
+            form.classList.add('success');
+            button.textContent = "You're in!";
+            input.disabled = true;
+          } else {
+            button.textContent = 'Try again';
+            button.disabled = false;
+          }
+        } catch (error) {
+          button.textContent = 'Try again';
+          button.disabled = false;
+        }
       });
     });
 
