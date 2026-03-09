@@ -235,14 +235,31 @@
     .email-form button:hover { background: var(--terracotta-light); }
     .email-form button:active { transform: scale(0.97); }
 
-    .email-form.success input[type="email"] {
-      border-color: var(--ochre);
-      background: #FFFBF0;
+    .success-message {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background: var(--white);
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      box-shadow: 0 2px 20px rgba(44, 44, 44, 0.08);
     }
 
-    .email-form.success button {
+    .success-check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
       background: var(--ochre);
-      color: var(--charcoal);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: 700;
     }
 
     .hero-note {
@@ -656,9 +673,13 @@
           const data = await response.json();
 
           if (data.success) {
-            form.classList.add('success');
-            button.textContent = "You're in!";
-            input.disabled = true;
+            const wrapper = form.parentElement;
+            wrapper.innerHTML = `
+              <div class="success-message">
+                <span class="success-check">&#10003;</span>
+                You're in! Check your inbox.
+              </div>
+            `;
           } else {
             button.textContent = 'Try again';
             button.disabled = false;
