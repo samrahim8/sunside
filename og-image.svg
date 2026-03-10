@@ -19,7 +19,7 @@
   <text x="600" y="300" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="120" font-weight="700" fill="#8B3A3A" letter-spacing="-2">SUNSIDE</text>
 
   <!-- Tagline -->
-  <text x="600" y="370" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" fill="#555555">The best way to keep up with Horizon West.</text>
+  <text x="600" y="370" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" fill="#555555">The local newsletter for Horizon West.</text>
 
   <!-- Footer text -->
   <text x="600" y="560" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#555555" opacity="0.6" letter-spacing="2">EVERY FRIDAY MORNING</text>
