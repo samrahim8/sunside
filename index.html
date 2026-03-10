@@ -59,11 +59,6 @@
       background: #6b2a2a;
     }
 
-    [data-theme="night"] .weather-card {
-      background: linear-gradient(145deg, rgba(40,40,40,0.9), rgba(30,30,30,0.7));
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
     [data-theme="night"] .email-form input[type="email"] {
       background: #2a2a2a;
       border-color: #3a3a3a;
@@ -321,54 +316,6 @@
       animation: fadeUpSubtle 0.8s ease-out 0.9s forwards;
     }
 
-    .weather-card {
-      margin-bottom: 2.5rem;
-      padding: 0.75rem 1.25rem;
-      background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.6);
-      box-shadow: 0 4px 20px rgba(44, 44, 44, 0.06);
-      text-align: center;
-      display: inline-block;
-    }
-
-    .weather-location {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--charcoal-light);
-      letter-spacing: 0.02em;
-    }
-
-    .weather-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-      margin: 0.15rem 0;
-    }
-
-    .weather-temp {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      font-weight: 600;
-      color: var(--charcoal);
-      line-height: 1;
-    }
-
-    .weather-condition {
-      font-size: 0.75rem;
-      color: var(--charcoal-light);
-      margin-bottom: 0.25rem;
-    }
-
-    .weather-hilo {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--charcoal);
-    }
 
     .scroll-hint {
       position: absolute;
@@ -642,6 +589,7 @@
 
   <div class="ticker">
     <div class="ticker-track">
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span id="ticker-weather-1">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>TJ Maxx now open at Hamlin</span>
       <span class="ticker-item"><span class="ticker-dot"></span>SR-516 bridge beams going up on 429</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Filigree's spring menu is live</span>
@@ -650,6 +598,7 @@
       <span class="ticker-item"><span class="ticker-dot"></span>Sushi Kindai coming to Village F</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Homegrown Market this Sunday 8am-12pm</span>
       <span class="ticker-item"><span class="ticker-dot"></span>73,000 residents + counting</span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span id="ticker-weather-2">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>TJ Maxx now open at Hamlin</span>
       <span class="ticker-item"><span class="ticker-dot"></span>SR-516 bridge beams going up on 429</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Filigree's spring menu is live</span>
@@ -683,16 +632,6 @@
   </section>
 
   <section class="what-you-get" id="what">
-    <div class="weather-card reveal" id="weather-card">
-      <p class="weather-location">Horizon West</p>
-      <div class="weather-icon" id="weather-icon">☀️</div>
-      <p class="weather-temp" id="weather-temp">--°</p>
-      <p class="weather-condition" id="weather-condition">Loading...</p>
-      <div class="weather-hilo">
-        <span>H:<span id="weather-high">--</span>°</span>
-        <span>L:<span id="weather-low">--</span>°</span>
-      </div>
-    </div>
     <p class="section-label reveal">What You'll Get</p>
     <h2 class="section-title reveal">Written by your neighbor.</h2>
     <p class="section-intro reveal">The things worth doing, knowing + talking about in Horizon West.</p>
@@ -797,51 +736,28 @@
       });
     });
 
-    // Fetch Horizon West weather
+    // Fetch Horizon West weather for ticker
     (async function() {
       try {
-        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4684&longitude=-81.5981&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=America/New_York');
+        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4684&longitude=-81.5981&current=temperature_2m,weather_code&temperature_unit=fahrenheit');
         const data = await res.json();
         const temp = Math.round(data.current.temperature_2m);
         const code = data.current.weather_code;
-        const high = Math.round(data.daily.temperature_2m_max[0]);
-        const low = Math.round(data.daily.temperature_2m_min[0]);
 
-        // Weather code to emoji and condition
-        const conditions = {
-          0: { emoji: '☀️', label: 'Sunny' },
-          1: { emoji: '🌤️', label: 'Mostly Clear' },
-          2: { emoji: '⛅', label: 'Partly Cloudy' },
-          3: { emoji: '☁️', label: 'Cloudy' },
-          45: { emoji: '🌫️', label: 'Foggy' },
-          48: { emoji: '🌫️', label: 'Foggy' },
-          51: { emoji: '🌧️', label: 'Light Drizzle' },
-          53: { emoji: '🌧️', label: 'Drizzle' },
-          55: { emoji: '🌧️', label: 'Heavy Drizzle' },
-          61: { emoji: '🌧️', label: 'Light Rain' },
-          63: { emoji: '🌧️', label: 'Rain' },
-          65: { emoji: '🌧️', label: 'Heavy Rain' },
-          80: { emoji: '🌦️', label: 'Light Showers' },
-          81: { emoji: '🌧️', label: 'Showers' },
-          82: { emoji: '🌧️', label: 'Heavy Showers' },
-          95: { emoji: '⛈️', label: 'Thunderstorm' },
-          96: { emoji: '⛈️', label: 'Thunderstorm' },
-          99: { emoji: '⛈️', label: 'Severe Storm' }
-        };
+        let emoji = '☀️';
+        if (code >= 1 && code <= 3) emoji = '⛅';
+        if (code >= 45 && code <= 48) emoji = '🌫️';
+        if (code >= 51 && code <= 67) emoji = '🌧️';
+        if (code >= 80 && code <= 82) emoji = '🌧️';
+        if (code >= 95) emoji = '⛈️';
 
-        const condition = conditions[code] || { emoji: '☀️', label: 'Clear' };
-
-        document.getElementById('weather-icon').textContent = condition.emoji;
-        document.getElementById('weather-temp').textContent = `${temp}°`;
-        document.getElementById('weather-condition').textContent = condition.label;
-        document.getElementById('weather-high').textContent = high;
-        document.getElementById('weather-low').textContent = low;
+        const weatherText = `${emoji} ${temp}°F in Horizon West`;
+        document.getElementById('ticker-weather-1').textContent = weatherText;
+        document.getElementById('ticker-weather-2').textContent = weatherText;
       } catch (e) {
-        document.getElementById('weather-icon').textContent = '☀️';
-        document.getElementById('weather-temp').textContent = '78°';
-        document.getElementById('weather-condition').textContent = 'Sunny';
-        document.getElementById('weather-high').textContent = '85';
-        document.getElementById('weather-low').textContent = '68';
+        const fallback = '☀️ 80°F in Horizon West';
+        document.getElementById('ticker-weather-1').textContent = fallback;
+        document.getElementById('ticker-weather-2').textContent = fallback;
       }
     })();
 
