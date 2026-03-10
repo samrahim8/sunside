@@ -256,9 +256,18 @@
     }
 
     .email-form button:hover { background: var(--terracotta-light); }
+    .email-form button:focus-visible {
+      outline: 2px solid var(--ochre);
+      outline-offset: 2px;
+    }
     .email-form button:active {
       transform: scale(0.97);
       background: #7A3232;
+    }
+
+    .email-form input[type="email"]:focus-visible {
+      outline: 2px solid var(--terracotta);
+      outline-offset: 1px;
     }
 
     .success-message {
@@ -608,6 +617,10 @@
       .cta { padding: 3rem 1.25rem; }
       .cta-title { font-size: 1.5rem; }
       .cta-sub { font-size: 0.9rem; margin-bottom: 1.5rem; }
+      .cta .email-form button {
+        min-height: 52px;
+        font-size: 1rem;
+      }
 
       /* Footer */
       .footer { padding: 2rem 1.25rem; }
@@ -675,7 +688,7 @@
       <p class="hero-tagline">The local newsletter for Horizon West.</p>
       <div class="email-form-wrapper">
         <form class="email-form" id="hero-form">
-          <input type="email" placeholder="your email" required>
+          <input type="email" placeholder="Enter your email" required>
           <button type="submit">Subscribe</button>
         </form>
       </div>
@@ -729,7 +742,7 @@
       <p class="cta-sub reveal">Every Friday morning. Free forever.</p>
       <div class="email-form-wrapper reveal">
         <form class="email-form" id="cta-form">
-          <input type="email" placeholder="your email" required>
+          <input type="email" placeholder="Enter your email" required>
           <button type="submit">Subscribe</button>
         </form>
       </div>
