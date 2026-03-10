@@ -576,8 +576,12 @@
         color: var(--charcoal);
       }
 
-      /* Hide scroll hint on mobile - not needed */
-      .scroll-hint { display: none; }
+      /* Show scroll hint on mobile */
+      .scroll-hint {
+        bottom: 1.5rem;
+        opacity: 0;
+        animation: bounceIn 2s infinite 2s;
+      }
 
       /* Sections */
       .sections-grid { grid-template-columns: 1fr; gap: 1rem; }
