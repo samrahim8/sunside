@@ -661,22 +661,26 @@
 
   <div class="ticker">
     <div class="ticker-track">
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span id="ticker-weather-1">☀️ --°F in Horizon West</span></span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>TJ Maxx now open at Hamlin</span>
       <span class="ticker-item"><span class="ticker-dot"></span>SR-516 bridge beams going up on 429</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Filigree's spring menu is live</span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>Lucky Charm 5K this Sunday</span>
       <span class="ticker-item"><span class="ticker-dot"></span>3Natives coming to Flamingo Crossings</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Sushi Kindai coming to Village F</span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>Homegrown Market this Sunday 8am-12pm</span>
       <span class="ticker-item"><span class="ticker-dot"></span>73,000 residents + counting</span>
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span id="ticker-weather-2">☀️ --°F in Horizon West</span></span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>TJ Maxx now open at Hamlin</span>
       <span class="ticker-item"><span class="ticker-dot"></span>SR-516 bridge beams going up on 429</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Filigree's spring menu is live</span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>Lucky Charm 5K this Sunday</span>
       <span class="ticker-item"><span class="ticker-dot"></span>3Natives coming to Flamingo Crossings</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Sushi Kindai coming to Village F</span>
+      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
       <span class="ticker-item"><span class="ticker-dot"></span>Homegrown Market this Sunday 8am-12pm</span>
       <span class="ticker-item"><span class="ticker-dot"></span>73,000 residents + counting</span>
     </div>
@@ -820,12 +824,10 @@
         if (code >= 95) emoji = '⛈️';
 
         const weatherText = `${emoji} ${temp}°F in Horizon West`;
-        document.getElementById('ticker-weather-1').textContent = weatherText;
-        document.getElementById('ticker-weather-2').textContent = weatherText;
+        document.querySelectorAll('.weather-text').forEach(el => el.textContent = weatherText);
       } catch (e) {
         const fallback = '☀️ 80°F in Horizon West';
-        document.getElementById('ticker-weather-1').textContent = fallback;
-        document.getElementById('ticker-weather-2').textContent = fallback;
+        document.querySelectorAll('.weather-text').forEach(el => el.textContent = fallback);
       }
     })();
 
