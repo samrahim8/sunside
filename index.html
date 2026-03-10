@@ -32,42 +32,6 @@
       --white: #FFFFFF;
     }
 
-    [data-theme="night"] {
-      --cream: #1a1a1a;
-      --cream-dark: #252525;
-      --charcoal: #FAF6F0;
-      --charcoal-light: #c9c4bc;
-      --white: #2a2a2a;
-      --terracotta: #c9706f;
-      --terracotta-light: #d48a89;
-    }
-
-    [data-theme="night"] .ticker {
-      background: #FAF6F0;
-      color: #2D4A3E;
-    }
-
-    [data-theme="night"] .ticker-dot {
-      background: #D4A04A;
-    }
-
-    [data-theme="night"] .footer {
-      background: var(--cream);
-    }
-
-    [data-theme="night"] .cta {
-      background: #6b2a2a;
-    }
-
-    [data-theme="night"] .email-form input[type="email"] {
-      background: #2a2a2a;
-      border-color: #3a3a3a;
-      color: var(--charcoal);
-    }
-
-    [data-theme="night"] .email-form input[type="email"]::placeholder {
-      color: #888;
-    }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -170,26 +134,15 @@
       max-width: 640px;
     }
 
-    .hero-time-greeting {
-      font-size: 0.65rem;
-      color: var(--charcoal-light);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUpMuted 0.8s ease-out 0.1s forwards;
-    }
-
     .hero-welcome {
       font-size: 0.9rem;
       color: var(--ochre);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
       opacity: 0;
-      animation: fadeUp 0.8s ease-out 0.15s forwards;
+      animation: fadeUp 0.8s ease-out 0.1s forwards;
     }
 
     .hero-wordmark {
@@ -612,8 +565,7 @@
 
   <section class="hero">
     <div class="hero-content">
-      <p class="hero-time-greeting" id="greeting"></p>
-      <p class="hero-welcome">Welcome to</p>
+      <p class="hero-welcome"><span id="greeting">Good morning</span>, welcome to</p>
       <div class="hero-wordmark">SUNSIDE</div>
       <p class="hero-tagline">The local newsletter for Horizon West.</p>
       <div class="email-form-wrapper">
@@ -761,7 +713,7 @@
       }
     })();
 
-    // Dynamic greeting and theme based on time
+    // Dynamic greeting based on time
     (function() {
       const hour = new Date().getHours();
       let greeting = 'Good evening';
@@ -773,11 +725,6 @@
       }
 
       document.getElementById('greeting').textContent = greeting;
-
-      // Night mode: 7pm - 6am
-      if (hour >= 19 || hour < 6) {
-        document.documentElement.setAttribute('data-theme', 'night');
-      }
     })();
 
     // Countdown to next Friday 8am ET
