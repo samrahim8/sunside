@@ -322,7 +322,7 @@
     }
 
     .weather-card {
-      margin-top: 2rem;
+      margin-bottom: 2.5rem;
       padding: 0.75rem 1.25rem;
       background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
       backdrop-filter: blur(10px);
@@ -331,8 +331,7 @@
       border: 1px solid rgba(255,255,255,0.6);
       box-shadow: 0 4px 20px rgba(44, 44, 44, 0.06);
       text-align: center;
-      opacity: 0;
-      animation: fadeUp 0.8s ease-out 1.1s forwards;
+      display: inline-block;
     }
 
     .weather-location {
@@ -675,16 +674,6 @@
         </form>
       </div>
       <p class="hero-note">Always free. Next issue drops in <span id="countdown"></span></p>
-      <div class="weather-card" id="weather-card">
-        <p class="weather-location">Horizon West</p>
-        <div class="weather-icon" id="weather-icon">☀️</div>
-        <p class="weather-temp" id="weather-temp">--°</p>
-        <p class="weather-condition" id="weather-condition">Loading...</p>
-        <div class="weather-hilo">
-          <span>H:<span id="weather-high">--</span>°</span>
-          <span>L:<span id="weather-low">--</span>°</span>
-        </div>
-      </div>
     </div>
     <a href="#what" class="scroll-hint" aria-label="Scroll down">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -694,6 +683,16 @@
   </section>
 
   <section class="what-you-get" id="what">
+    <div class="weather-card reveal" id="weather-card">
+      <p class="weather-location">Horizon West</p>
+      <div class="weather-icon" id="weather-icon">☀️</div>
+      <p class="weather-temp" id="weather-temp">--°</p>
+      <p class="weather-condition" id="weather-condition">Loading...</p>
+      <div class="weather-hilo">
+        <span>H:<span id="weather-high">--</span>°</span>
+        <span>L:<span id="weather-low">--</span>°</span>
+      </div>
+    </div>
     <p class="section-label reveal">What You'll Get</p>
     <h2 class="section-title reveal">Written by your neighbor.</h2>
     <p class="section-intro reveal">The things worth doing, knowing + talking about in Horizon West.</p>
