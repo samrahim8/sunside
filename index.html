@@ -412,6 +412,57 @@
       font-weight: 600;
     }
 
+    .upcoming {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .upcoming-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .upcoming-card {
+      padding: 1.75rem 1.25rem;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px dashed var(--cream-dark);
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .upcoming-card:hover {
+      opacity: 0.8;
+    }
+
+    .upcoming-issue {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--charcoal-light);
+      margin-bottom: 0.35rem;
+    }
+
+    .upcoming-date {
+      font-size: 0.85rem;
+      color: var(--charcoal-light);
+      opacity: 0.7;
+    }
+
+    .upcoming-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-top: 0.75rem;
+      font-weight: 600;
+    }
+
     .cta {
       padding: 6rem 2rem;
       background: var(--terracotta);
@@ -613,6 +664,15 @@
       .about-text { font-size: 1rem; line-height: 1.7; }
       .about-sig { font-size: 1.15rem; }
 
+      /* Upcoming */
+      .upcoming { padding: 3rem 1.25rem; }
+      .upcoming-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .upcoming-card { padding: 1.25rem 1rem; }
+      .upcoming-issue { font-size: 1rem; }
+
       /* CTA */
       .cta { padding: 3rem 1.25rem; }
       .cta-title { font-size: 1.5rem; }
@@ -738,6 +798,28 @@
     <p class="about-text reveal">Honestly, I started Sunside because I wanted to make more friends + invest in our community.</p>
     <p class="about-text reveal">Appreciate you subscribing, and hope I get to meet you!</p>
     <p class="about-sig reveal">— Sam</p>
+  </section>
+
+  <section class="upcoming">
+    <p class="section-label reveal">On the Calendar</p>
+    <h2 class="section-title reveal">Every Friday morning.</h2>
+    <div class="upcoming-grid">
+      <div class="upcoming-card reveal">
+        <p class="upcoming-issue">Issue #1</p>
+        <p class="upcoming-date">Friday, March 14</p>
+        <span class="upcoming-badge">Coming soon</span>
+      </div>
+      <div class="upcoming-card reveal">
+        <p class="upcoming-issue">Issue #2</p>
+        <p class="upcoming-date">Friday, March 21</p>
+        <span class="upcoming-badge">Coming soon</span>
+      </div>
+      <div class="upcoming-card reveal">
+        <p class="upcoming-issue">Issue #3</p>
+        <p class="upcoming-date">Friday, March 28</p>
+        <span class="upcoming-badge">Coming soon</span>
+      </div>
+    </div>
   </section>
 
   <section class="cta">
