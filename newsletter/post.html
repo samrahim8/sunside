@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Loading... — SUNSIDE</title>
+  <meta name="description" content="SUNSIDE — The local newsletter for Horizon West.">
+  <meta property="og:title" content="SUNSIDE">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://readsunside.com/newsletter">
+  <meta property="og:image" content="https://readsunside.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #8B3A3A;
+      --terracotta-light: #A65050;
+      --cream: #FAF6F0;
+      --cream-dark: #F0EBE3;
+      --charcoal: #2C2C2C;
+      --charcoal-light: #555555;
+      --ochre: #D4A04A;
+      --ochre-light: #E8C882;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .header-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.75rem;
+      color: var(--terracotta);
+      text-decoration: none;
+    }
+
+    .header-wordmark:hover {
+      color: var(--terracotta-light);
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .header-link {
+      color: var(--charcoal-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .header-link:hover {
+      color: var(--terracotta);
+    }
+
+    .header-subscribe {
+      padding: 0.6rem 1.25rem;
+      background: var(--terracotta);
+      color: var(--cream);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .header-subscribe:hover {
+      background: var(--terracotta-light);
+    }
+
+    .post {
+      padding: 2rem 2rem 4rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .post-loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--charcoal-light);
+    }
+
+    .post-error {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .post-error-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .post-error-text {
+      color: var(--charcoal-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .post-error-link {
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    .post-header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .post-date {
+      font-size: 0.85rem;
+      color: var(--ochre);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--terracotta);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-subtitle {
+      font-size: 1.15rem;
+      color: var(--charcoal-light);
+      line-height: 1.5;
+    }
+
+    .post-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--charcoal);
+    }
+
+    /* Style Beehiiv content */
+    .post-content h1,
+    .post-content h2,
+    .post-content h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--terracotta);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .post-content h1 { font-size: 2rem; }
+    .post-content h2 { font-size: 1.5rem; }
+    .post-content h3 { font-size: 1.25rem; }
+
+    .post-content p {
+      margin-bottom: 1.25rem;
+    }
+
+    .post-content a {
+      color: var(--terracotta);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .post-content a:hover {
+      color: var(--terracotta-light);
+    }
+
+    .post-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .post-content blockquote {
+      border-left: 3px solid var(--ochre);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--charcoal-light);
+    }
+
+    .post-content ul,
+    .post-content ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .post-content hr {
+      border: none;
+      border-top: 1px solid var(--cream-dark);
+      margin: 2rem 0;
+    }
+
+    .post-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+
+    .post-content td,
+    .post-content th {
+      padding: 0.75rem;
+      border: 1px solid var(--cream-dark);
+      text-align: left;
+    }
+
+    .post-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-dark);
+      text-align: center;
+    }
+
+    .post-footer-cta {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+
+    .post-footer-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--terracotta);
+      color: var(--cream);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .post-footer-link:hover {
+      background: var(--terracotta-light);
+    }
+
+    .post-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .post-nav a {
+      color: var(--charcoal-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .post-nav a:hover {
+      color: var(--terracotta);
+    }
+
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: var(--cream);
+      color: #2D4A3E;
+    }
+
+    .footer-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #2D4A3E;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--charcoal-light);
+    }
+
+    @media (max-width: 640px) {
+      .header {
+        padding: 1.25rem;
+      }
+
+      .header-wordmark {
+        font-size: 1.5rem;
+      }
+
+      .header-nav {
+        gap: 1rem;
+      }
+
+      .header-link {
+        display: none;
+      }
+
+      .post {
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+      }
+
+      .post-subtitle {
+        font-size: 1rem;
+      }
+
+      .post-content {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .post-content h1 { font-size: 1.5rem; }
+      .post-content h2 { font-size: 1.25rem; }
+      .post-content h3 { font-size: 1.1rem; }
+
+      .footer {
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="/" class="header-wordmark">SUNSIDE</a>
+    <nav class="header-nav">
+      <a href="/newsletter" class="header-link">Archive</a>
+      <a href="/" class="header-subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <main class="post" id="post-container">
+    <div class="post-loading">Loading...</div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-wordmark">SUNSIDE</p>
+    <p class="footer-tagline">The local newsletter for Horizon West.</p>
+  </footer>
+
+  <script>
+    (async function() {
+      const container = document.getElementById('post-container');
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('id');
+
+      if (!postId) {
+        container.innerHTML = `
+          <div class="post-error">
+            <p class="post-error-title">Post not found</p>
+            <p class="post-error-text">This newsletter doesn't exist.</p>
+            <a href="/newsletter" class="post-error-link">View all issues</a>
+          </div>
+        `;
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/post?id=${encodeURIComponent(postId)}`);
+
+        if (!response.ok) {
+          throw new Error('Post not found');
+        }
+
+        const data = await response.json();
+        const post = data.post;
+
+        if (!post) {
+          throw new Error('Post not found');
+        }
+
+        // Update page title and meta
+        document.title = `${post.title} — SUNSIDE`;
+
+        const date = new Date(post.publishedAt * 1000);
+        const dateStr = date.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
+        let contentHtml = '';
+        if (post.content) {
+          contentHtml = `<div class="post-content">${post.content}</div>`;
+        } else {
+          contentHtml = `
+            <div class="post-content">
+              <p>This post's content isn't available for web viewing.</p>
+              <p><a href="${post.webUrl}" target="_blank" rel="noopener">Read on Beehiiv</a></p>
+            </div>
+          `;
+        }
+
+        container.innerHTML = `
+          <article>
+            <header class="post-header">
+              <p class="post-date">${dateStr}</p>
+              <h1 class="post-title">${post.title}</h1>
+              ${post.subtitle ? `<p class="post-subtitle">${post.subtitle}</p>` : ''}
+            </header>
+            ${contentHtml}
+            <footer class="post-footer">
+              <p class="post-footer-cta">Want this in your inbox every Friday?</p>
+              <a href="/" class="post-footer-link">Subscribe to SUNSIDE</a>
+              <nav class="post-nav">
+                <a href="/newsletter">View all issues</a>
+              </nav>
+            </footer>
+          </article>
+        `;
+
+      } catch (error) {
+        console.error('Failed to load post:', error);
+        container.innerHTML = `
+          <div class="post-error">
+            <p class="post-error-title">Couldn't load this issue</p>
+            <p class="post-error-text">Please try again later.</p>
+            <a href="/newsletter" class="post-error-link">View all issues</a>
+          </div>
+        `;
+      }
+    })();
+  </script>
+
+</body>
+</html>

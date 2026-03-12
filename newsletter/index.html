@@ -298,7 +298,7 @@
           });
 
           return `
-            <a href="${post.webUrl}" class="post-card" target="_blank" rel="noopener">
+            <a href="/newsletter/post.html?id=${post.id}" class="post-card">
               <p class="post-date">${dateStr}</p>
               <h2 class="post-title">${post.title}</h2>
               ${post.subtitle ? `<p class="post-subtitle">${post.subtitle}</p>` : ''}
