@@ -412,6 +412,72 @@
       font-weight: 600;
     }
 
+    .past-issues {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      display: none; /* Hidden until posts load */
+    }
+
+    .past-issues.has-posts {
+      display: block;
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .archive-card {
+      display: block;
+      padding: 1.5rem 1.25rem;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--cream-dark);
+      text-decoration: none;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .archive-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(44, 44, 44, 0.08);
+    }
+
+    .archive-card-date {
+      font-size: 0.75rem;
+      color: var(--ochre);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .archive-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      line-height: 1.3;
+    }
+
+    .archive-link {
+      margin-top: 2rem;
+    }
+
+    .archive-link a {
+      color: var(--terracotta);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .archive-link a:hover {
+      text-decoration: underline;
+    }
+
     .upcoming {
       padding: 5rem 2rem;
       max-width: 900px;
@@ -666,6 +732,15 @@
       .about-text { font-size: 1rem; line-height: 1.7; }
       .about-sig { font-size: 1.15rem; }
 
+      /* Archive */
+      .past-issues { padding: 3rem 1.25rem; }
+      .archive-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .archive-card { padding: 1.25rem 1rem; }
+      .archive-card-title { font-size: 1rem; }
+
       /* Upcoming */
       .upcoming { padding: 3rem 1.25rem; }
       .upcoming-grid {
@@ -800,6 +875,15 @@
     <p class="about-text reveal">Honestly, I started Sunside because I wanted to make more friends + invest in our community.</p>
     <p class="about-text reveal">Appreciate you subscribing, and hope I get to meet you!</p>
     <p class="about-sig reveal">— Sam</p>
+  </section>
+
+  <section class="past-issues" id="archive">
+    <p class="section-label reveal">Past Issues</p>
+    <h2 class="section-title reveal">Read what you missed.</h2>
+    <div id="archive-container" class="archive-grid">
+      <!-- Populated by JS -->
+    </div>
+    <p class="archive-link reveal"><a href="/newsletter">View all issues</a></p>
   </section>
 
   <section class="upcoming">
@@ -969,6 +1053,43 @@
 
     updateCountdown();
     setInterval(updateCountdown, 60000); // Update every minute
+
+    // Fetch and display past issues
+    (async function() {
+      try {
+        const response = await fetch('/api/posts?limit=3');
+        const data = await response.json();
+
+        if (data.posts && data.posts.length > 0) {
+          const section = document.querySelector('.past-issues');
+          const container = document.getElementById('archive-container');
+
+          const postsHtml = data.posts.map(post => {
+            const date = new Date(post.publishedAt * 1000);
+            const dateStr = date.toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric'
+            });
+
+            return `
+              <a href="${post.webUrl}" class="archive-card reveal" target="_blank" rel="noopener">
+                <p class="archive-card-date">${dateStr}</p>
+                <h3 class="archive-card-title">${post.title}</h3>
+              </a>
+            `;
+          }).join('');
+
+          container.innerHTML = postsHtml;
+          section.classList.add('has-posts');
+
+          // Re-observe new elements for reveal animation
+          container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        }
+      } catch (e) {
+        // Silently fail - archive section stays hidden
+        console.log('No posts to display');
+      }
+    })();
 
     // Generate grain texture
     (function() {
