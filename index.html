@@ -945,24 +945,6 @@
     (async function() {
       const container = document.getElementById('issues-container');
 
-      // Helper to get next Fridays
-      function getNextFridays(count, afterDate = new Date()) {
-        const fridays = [];
-        const d = new Date(afterDate);
-        d.setHours(0, 0, 0, 0);
-
-        // Move to next day to avoid including today if it's Friday
-        d.setDate(d.getDate() + 1);
-
-        while (fridays.length < count) {
-          if (d.getDay() === 5) { // Friday
-            fridays.push(new Date(d));
-          }
-          d.setDate(d.getDate() + 1);
-        }
-        return fridays;
-      }
-
       try {
         const response = await fetch('/api/posts?limit=1');
         const data = await response.json();
@@ -974,35 +956,23 @@
         // Latest published issue
         if (data.posts && data.posts.length > 0) {
           const post = data.posts[0];
-          lastPublishedDate = new Date(post.publishedAt * 1000);
 
           // Extract issue number from title if possible
           const match = post.title.match(/#(\d+)/);
           if (match) issueNumber = parseInt(match[1]);
 
-          const dateStr = lastPublishedDate.toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'short',
-            day: 'numeric'
-          });
-
           html += `
             <a href="/newsletter/post.html?id=${post.id}" class="issue-card published reveal">
               <span class="issue-card-badge latest">Latest</span>
               <h3 class="issue-card-title">${post.title}</h3>
-              <p class="issue-card-date">${dateStr}</p>
+              <p class="issue-card-date">Friday, Mar 14</p>
             </a>
           `;
         }
 
-        // Upcoming issues (next 2 Fridays)
-        const upcomingFridays = getNextFridays(2, lastPublishedDate);
-        upcomingFridays.forEach((friday, i) => {
-          const dateStr = friday.toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'short',
-            day: 'numeric'
-          });
+        // Upcoming issues (next 2 Fridays after Mar 14)
+        const upcomingDates = ['Friday, Mar 21', 'Friday, Mar 28'];
+        upcomingDates.forEach((dateStr, i) => {
           const nextIssueNum = issueNumber + i + 1;
 
           html += `
@@ -1019,21 +989,14 @@
 
       } catch (e) {
         // Fallback: show next 3 Fridays
-        const fridays = getNextFridays(3);
-        const html = fridays.map((friday, i) => {
-          const dateStr = friday.toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'short',
-            day: 'numeric'
-          });
-          return `
-            <div class="issue-card upcoming reveal">
-              <span class="issue-card-badge coming">Coming soon</span>
-              <h3 class="issue-card-title">Issue #${i + 1}</h3>
-              <p class="issue-card-date">${dateStr}</p>
-            </div>
-          `;
-        }).join('');
+        const fallbackDates = ['Friday, Mar 14', 'Friday, Mar 21', 'Friday, Mar 28'];
+        const html = fallbackDates.map((dateStr, i) => `
+          <div class="issue-card upcoming reveal">
+            <span class="issue-card-badge coming">Coming soon</span>
+            <h3 class="issue-card-title">Issue #${i + 1}</h3>
+            <p class="issue-card-date">${dateStr}</p>
+          </div>
+        `).join('');
 
         container.innerHTML = html;
         container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
