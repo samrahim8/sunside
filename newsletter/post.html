@@ -429,7 +429,13 @@
 
         let contentHtml = '';
         if (post.content) {
-          contentHtml = `<div class="post-content">${post.content}</div>`;
+          // Beehiiv returns full HTML doc - extract just the body content
+          let bodyContent = post.content;
+          const bodyMatch = post.content.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+          if (bodyMatch) {
+            bodyContent = bodyMatch[1];
+          }
+          contentHtml = `<div class="post-content">${bodyContent}</div>`;
         } else {
           // Fallback: embed the Beehiiv post in an iframe
           contentHtml = `
