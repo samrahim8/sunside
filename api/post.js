@@ -38,17 +38,7 @@ export default async function handler(req, res) {
     const data = await response.json();
     const post = data.data;
 
-    // Debug: check structure of free_web_content
-    const freeWebContent = post.free_web_content;
-    let content = null;
-    if (typeof freeWebContent === 'string') {
-      content = freeWebContent;
-    } else if (freeWebContent?.content) {
-      content = freeWebContent.content;
-    } else if (freeWebContent?.html) {
-      content = freeWebContent.html;
-    }
-
+    // Debug: return all fields to see what's available
     const result = {
       id: post.id,
       title: post.title,
@@ -57,8 +47,8 @@ export default async function handler(req, res) {
       publishedAt: post.publish_date,
       thumbnail: post.thumbnail_url,
       webUrl: post.web_url,
-      content: content,
-      _debug: { freeWebContentType: typeof freeWebContent, freeWebContentKeys: freeWebContent ? Object.keys(freeWebContent) : null },
+      content: post.free_web_content || post.content || null,
+      _allFields: Object.keys(post),
     };
 
     // Cache for 5 minutes
