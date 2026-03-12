@@ -232,6 +232,21 @@
       text-align: left;
     }
 
+    .post-embed {
+      margin: 0 -2rem;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--cream-dark);
+    }
+
+    .post-embed iframe {
+      width: 100%;
+      height: 80vh;
+      min-height: 600px;
+      border: none;
+    }
+
     .post-footer {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -339,6 +354,15 @@
       .footer {
         padding: 2rem 1.25rem;
       }
+
+      .post-embed {
+        margin: 0 -1.25rem;
+        border-radius: 0;
+      }
+
+      .post-embed iframe {
+        min-height: 500px;
+      }
     }
   </style>
 </head>
@@ -407,10 +431,10 @@
         if (post.content) {
           contentHtml = `<div class="post-content">${post.content}</div>`;
         } else {
+          // Fallback: embed the Beehiiv post in an iframe
           contentHtml = `
-            <div class="post-content">
-              <p>This post's content isn't available for web viewing.</p>
-              <p><a href="${post.webUrl}" target="_blank" rel="noopener">Read on Beehiiv</a></p>
+            <div class="post-embed">
+              <iframe src="${post.webUrl}" frameborder="0" allowfullscreen></iframe>
             </div>
           `;
         }
