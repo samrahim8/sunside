@@ -117,95 +117,126 @@
 
     .villages {
       padding: 2rem;
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
     .village-card {
       background: var(--white);
-      border-radius: 12px;
+      border-radius: 16px;
       border: 1px solid var(--cream-dark);
-      padding: 2rem;
-      margin-bottom: 1.5rem;
+      padding: 2.25rem 2.5rem;
+      margin-bottom: 1.25rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .village-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--ochre) 0%, var(--terracotta) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .village-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(44, 44, 44, 0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(44, 44, 44, 0.1);
     }
 
-    .village-header {
+    .village-card:hover::before {
+      opacity: 1;
+    }
+
+    .village-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .village-title-group {
+      flex: 1;
     }
 
     .village-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: var(--terracotta);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
     }
 
     .village-tagline {
       display: inline-block;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--white);
       background: var(--green);
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
+      padding: 0.4rem 0.85rem;
+      border-radius: 100px;
     }
 
     .village-price {
-      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--ochre);
+      text-align: right;
+      white-space: nowrap;
+      margin-left: 1.5rem;
+    }
+
+    .village-content {
+      margin-bottom: 1.5rem;
     }
 
     .village-feature {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 500;
       color: var(--charcoal);
       margin-bottom: 0.75rem;
-      padding-left: 1.25rem;
+      padding-left: 1.5rem;
       position: relative;
+      line-height: 1.5;
     }
 
     .village-feature::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0.5rem;
-      width: 6px;
-      height: 6px;
+      top: 0.55rem;
+      width: 8px;
+      height: 8px;
       background: var(--ochre);
       border-radius: 50%;
     }
 
     .village-desc {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--charcoal-light);
-      line-height: 1.7;
-      margin-bottom: 1rem;
+      line-height: 1.75;
     }
 
     .village-meta {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1.5rem;
-      padding-top: 1rem;
+      gap: 1.25rem;
+      padding-top: 1.25rem;
       border-top: 1px solid var(--cream-dark);
     }
 
     .village-meta-item {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--charcoal-light);
     }
 
@@ -214,13 +245,26 @@
       color: var(--charcoal);
     }
 
+    .village-meta-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--cream-dark);
+    }
+
     .best-for {
-      display: inline-block;
-      font-size: 0.8rem;
-      background: var(--cream);
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
-      color: var(--charcoal-light);
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.85rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      color: var(--charcoal);
+      margin-left: auto;
+    }
+
+    .best-for-icon {
+      margin-right: 0.4rem;
+      opacity: 0.7;
     }
 
     .footer {
@@ -298,20 +342,43 @@
       }
 
       .village-card {
-        padding: 1.5rem;
+        padding: 1.5rem 1.25rem;
+        border-radius: 12px;
       }
 
-      .village-header {
+      .village-top {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.25rem;
       }
 
       .village-name {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+      }
+
+      .village-price {
+        font-size: 1.1rem;
+        text-align: left;
+        margin-left: 0;
+        margin-top: 0.25rem;
+      }
+
+      .village-feature {
+        font-size: 0.95rem;
       }
 
       .village-meta {
-        gap: 1rem;
+        gap: 0.75rem 1rem;
+      }
+
+      .village-meta-divider {
+        display: none;
+      }
+
+      .best-for {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        width: 100%;
+        justify-content: center;
       }
 
       .footer {
@@ -341,104 +408,122 @@
   <main class="villages">
 
     <article class="village-card">
-      <div class="village-header">
-        <div>
+      <div class="village-top">
+        <div class="village-title-group">
           <h2 class="village-name">Lakeside Village</h2>
           <span class="village-tagline">The established one</span>
         </div>
         <span class="village-price">$387K – $1.1M+</span>
       </div>
-      <p class="village-feature">Lakeside Village Center & Westside Shoppes — largest commercial hub in HW</p>
-      <p class="village-desc">Mature landscaping with established neighborhoods. The first village (1997), offering extensive shopping, dining, and services within the community itself.</p>
+      <div class="village-content">
+        <p class="village-feature">Lakeside Village Center & Westside Shoppes — largest commercial hub in HW</p>
+        <p class="village-desc">Mature landscaping with established neighborhoods. The first village (1997), offering extensive shopping, dining, and services within the community itself.</p>
+      </div>
       <div class="village-meta">
-        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $130–$250/quarter</span>
-        <span class="village-meta-item"><span class="village-meta-label">Units:</span> Up to 8,915</span>
-        <span class="best-for">Best for: Families seeking convenience</span>
+        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $130–$250/qtr</span>
+        <span class="village-meta-divider"></span>
+        <span class="village-meta-item"><span class="village-meta-label">Units:</span> 8,915</span>
+        <span class="best-for"><span class="best-for-icon">→</span> Families seeking convenience</span>
       </div>
     </article>
 
     <article class="village-card">
-      <div class="village-header">
-        <div>
+      <div class="village-top">
+        <div class="village-title-group">
           <h2 class="village-name">Village of Bridgewater</h2>
           <span class="village-tagline">The family favorite</span>
         </div>
         <span class="village-price">$350K – $700K</span>
       </div>
-      <p class="village-feature">Parks and playgrounds in every neighborhood</p>
-      <p class="village-desc">Most populated village with family-friendly design and main street-style businesses. The largest by capacity with 10,450 approved units.</p>
+      <div class="village-content">
+        <p class="village-feature">Parks and playgrounds in every neighborhood</p>
+        <p class="village-desc">Most populated village with family-friendly design and main street-style businesses. The largest by capacity with 10,450 approved units.</p>
+      </div>
       <div class="village-meta">
-        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $130–$280/quarter</span>
+        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $130–$280/qtr</span>
+        <span class="village-meta-divider"></span>
         <span class="village-meta-item"><span class="village-meta-label">Units:</span> 10,450</span>
-        <span class="best-for">Best for: Budget-conscious families & first-time buyers</span>
+        <span class="best-for"><span class="best-for-icon">→</span> Budget-conscious families & first-time buyers</span>
       </div>
     </article>
 
     <article class="village-card">
-      <div class="village-header">
-        <div>
-          <h2 class="village-name">Town Center (Hamlin & Silver Leaf)</h2>
+      <div class="village-top">
+        <div class="village-title-group">
+          <h2 class="village-name">Town Center</h2>
           <span class="village-tagline">The walkable one</span>
         </div>
         <span class="village-price">$450K – $1M+</span>
       </div>
-      <p class="village-feature">Waterfront dining, PopStroke mini golf, Cinépolis cinema</p>
-      <p class="village-desc">Urban energy within a suburb featuring Lake Hancock boardwalk, farmers markets, and community activities across 3,624 acres with 2M+ sq ft of commercial space.</p>
+      <div class="village-content">
+        <p class="village-feature">Waterfront dining, PopStroke, Cinépolis + Lake Hancock boardwalk</p>
+        <p class="village-desc">Urban energy within a suburb. Hamlin and Silver Leaf together span 3,624 acres with 2M+ sq ft of commercial space, farmers markets, and community events.</p>
+      </div>
       <div class="village-meta">
-        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $150–$300/quarter</span>
-        <span class="village-meta-item"><span class="village-meta-label">Units:</span> Up to 4,870</span>
-        <span class="best-for">Best for: Young professionals & foodies</span>
+        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $150–$300/qtr</span>
+        <span class="village-meta-divider"></span>
+        <span class="village-meta-item"><span class="village-meta-label">Units:</span> 4,870</span>
+        <span class="best-for"><span class="best-for-icon">→</span> Young professionals & foodies</span>
       </div>
     </article>
 
     <article class="village-card">
-      <div class="village-header">
-        <div>
+      <div class="village-top">
+        <div class="village-title-group">
           <h2 class="village-name">Village F</h2>
           <span class="village-tagline">The nature lover</span>
         </div>
         <span class="village-price">$325K – $650K</span>
       </div>
-      <p class="village-feature">The Mark shopping district + Disney fireworks views from home</p>
-      <p class="village-desc">Lake views, nature trails, and a quieter pace while maintaining walkability and convenient access to amenities.</p>
+      <div class="village-content">
+        <p class="village-feature">The Mark shopping district + Disney fireworks views from home</p>
+        <p class="village-desc">Lake views, nature trails, and a quieter pace while maintaining walkability and convenient access to amenities.</p>
+      </div>
       <div class="village-meta">
-        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $100–$250/quarter</span>
-        <span class="village-meta-item"><span class="village-meta-label">Units:</span> Up to 3,891</span>
-        <span class="best-for">Best for: Nature lovers & Disney Cast Members</span>
+        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $100–$250/qtr</span>
+        <span class="village-meta-divider"></span>
+        <span class="village-meta-item"><span class="village-meta-label">Units:</span> 3,891</span>
+        <span class="best-for"><span class="best-for-icon">→</span> Nature lovers & Disney Cast Members</span>
       </div>
     </article>
 
     <article class="village-card">
-      <div class="village-header">
-        <div>
-          <h2 class="village-name">Village H (Hickory Nut)</h2>
+      <div class="village-top">
+        <div class="village-title-group">
+          <h2 class="village-name">Village H</h2>
           <span class="village-tagline">The upscale newcomer</span>
         </div>
         <span class="village-price">$430K – $900K+</span>
       </div>
-      <p class="village-feature">Hickory Nut Lake with proximity to Flamingo Crossings Town Center</p>
-      <p class="village-desc">Newer construction with spacious single-family homes and townhomes, featuring upscale and private neighborhoods with strong community identity.</p>
+      <div class="village-content">
+        <p class="village-feature">Hickory Nut Lake + proximity to Flamingo Crossings Town Center</p>
+        <p class="village-desc">Newer construction with spacious single-family homes and townhomes, featuring upscale and private neighborhoods with strong community identity.</p>
+      </div>
       <div class="village-meta">
-        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $130–$300/quarter</span>
-        <span class="village-meta-item"><span class="village-meta-label">Units:</span> Up to 6,548</span>
-        <span class="best-for">Best for: Buyers seeking newer construction near Disney</span>
+        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $130–$300/qtr</span>
+        <span class="village-meta-divider"></span>
+        <span class="village-meta-item"><span class="village-meta-label">Units:</span> 6,548</span>
+        <span class="best-for"><span class="best-for-icon">→</span> Newer construction seekers near Disney</span>
       </div>
     </article>
 
     <article class="village-card">
-      <div class="village-header">
-        <div>
+      <div class="village-top">
+        <div class="village-title-group">
           <h2 class="village-name">Village I (Ovation)</h2>
           <span class="village-tagline">The nature-forward one</span>
         </div>
         <span class="village-price">$400K – $800K</span>
       </div>
-      <p class="village-feature">Nature-forward design + direct access to Disney & Flamingo Crossings via Western Way</p>
-      <p class="village-desc">The final village with unified master developer vision emphasizing conservation zones, kayaking, and birdwatching integrated into neighborhood design.</p>
+      <div class="village-content">
+        <p class="village-feature">Nature-forward design + direct Disney access via Western Way</p>
+        <p class="village-desc">The final village with unified master developer vision emphasizing conservation zones, kayaking, and birdwatching integrated into neighborhood design.</p>
+      </div>
       <div class="village-meta">
-        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $100–$250/quarter</span>
-        <span class="village-meta-item"><span class="village-meta-label">Units:</span> TBD (still planning)</span>
-        <span class="best-for">Best for: New construction seekers & nature enthusiasts</span>
+        <span class="village-meta-item"><span class="village-meta-label">HOA:</span> $100–$250/qtr</span>
+        <span class="village-meta-divider"></span>
+        <span class="village-meta-item"><span class="village-meta-label">Units:</span> TBD</span>
+        <span class="best-for"><span class="best-for-icon">→</span> New construction & nature enthusiasts</span>
       </div>
     </article>
 
