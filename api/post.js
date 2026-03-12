@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://api.beehiiv.com/v2/publications/${publicationId}/posts/${id}?expand=free_web_content`,
+      `https://api.beehiiv.com/v2/publications/${publicationId}/posts/${id}?expand[]=free_web_content`,
       {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
