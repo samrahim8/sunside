@@ -49,17 +49,18 @@
       z-index: 10;
     }
 
-    .nav-wordmark {
-      font-family: 'Playfair Display', serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--terracotta);
-      text-decoration: none;
-      margin-right: 1rem;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      transition: transform 0.2s ease;
     }
 
-    .nav-wordmark:hover {
-      color: var(--terracotta-light);
+    .nav-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-logo svg {
+      border-radius: 6px;
     }
 
     .nav-link {
@@ -334,9 +335,9 @@
         gap: 1rem;
       }
 
-      .nav-wordmark {
-        font-size: 1.1rem;
-        margin-right: 0.5rem;
+      .nav-logo svg {
+        width: 32px;
+        height: 32px;
       }
 
       .nav-link {
@@ -412,7 +413,13 @@
 <body>
 
   <nav class="nav">
-    <a href="/" class="nav-wordmark">SUNSIDE</a>
+    <a href="/" class="nav-logo" aria-label="SUNSIDE Home">
+      <svg viewBox="0 0 32 32" width="36" height="36">
+        <rect width="32" height="32" rx="6" fill="#8B3A3A"/>
+        <path d="M6 20 Q16 8 26 20" stroke="#D4A04A" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <line x1="6" y1="24" x2="26" y2="24" stroke="#FAF6F0" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </a>
   </nav>
 
   <header class="header">

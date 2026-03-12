@@ -46,22 +46,18 @@
       margin: 0 auto;
     }
 
-    .header-wordmark {
-      font-family: 'Playfair Display', serif;
-      font-weight: 800;
-      font-size: 1.75rem;
-      color: var(--terracotta);
-      text-decoration: none;
-    }
-
-    .header-wordmark:hover {
-      color: var(--terracotta-light);
-    }
-
-    .header-nav {
+    .header-logo {
       display: flex;
-      gap: 1.5rem;
       align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .header-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .header-logo svg {
+      border-radius: 6px;
     }
 
     .header-link {
@@ -318,16 +314,9 @@
         padding: 1.25rem;
       }
 
-      .header-wordmark {
-        font-size: 1.5rem;
-      }
-
-      .header-nav {
-        gap: 1rem;
-      }
-
-      .header-link {
-        display: none;
+      .header-logo svg {
+        width: 32px;
+        height: 32px;
       }
 
       .post {
@@ -369,7 +358,13 @@
 <body>
 
   <header class="header">
-    <a href="/" class="header-wordmark">SUNSIDE</a>
+    <a href="/" class="header-logo" aria-label="SUNSIDE Home">
+      <svg viewBox="0 0 32 32" width="36" height="36">
+        <rect width="32" height="32" rx="6" fill="#8B3A3A"/>
+        <path d="M6 20 Q16 8 26 20" stroke="#D4A04A" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <line x1="6" y1="24" x2="26" y2="24" stroke="#FAF6F0" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </a>
   </header>
 
   <main class="post" id="post-container">

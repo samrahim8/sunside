@@ -74,17 +74,18 @@
       z-index: 10;
     }
 
-    .nav-wordmark {
-      font-family: 'Playfair Display', serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--terracotta);
-      text-decoration: none;
-      margin-right: 1rem;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      transition: transform 0.2s ease;
     }
 
-    .nav-wordmark:hover {
-      color: var(--terracotta-light);
+    .nav-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-logo svg {
+      border-radius: 6px;
     }
 
     .nav-link {
@@ -608,7 +609,7 @@
       }
 
       .nav { padding: 0.75rem 1rem; gap: 1rem; }
-      .nav-wordmark { font-size: 1.1rem; margin-right: 0.5rem; }
+      .nav-logo svg { width: 32px; height: 32px; }
       .nav-link { font-size: 0.8rem; }
 
       /* Hero: full viewport, content slightly above center */
@@ -752,7 +753,13 @@
   <div id="grain"></div>
 
   <nav class="nav">
-    <a href="/" class="nav-wordmark">SUNSIDE</a>
+    <a href="/" class="nav-logo" aria-label="SUNSIDE Home">
+      <svg viewBox="0 0 32 32" width="36" height="36">
+        <rect width="32" height="32" rx="6" fill="#8B3A3A"/>
+        <path d="M6 20 Q16 8 26 20" stroke="#D4A04A" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <line x1="6" y1="24" x2="26" y2="24" stroke="#FAF6F0" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </a>
   </nav>
 
   <section class="hero">
@@ -965,13 +972,13 @@
             <a href="/newsletter/post.html?id=${post.id}" class="issue-card published reveal">
               <span class="issue-card-badge latest">Latest</span>
               <h3 class="issue-card-title">${post.title}</h3>
-              <p class="issue-card-date">Friday, Mar 14</p>
+              <p class="issue-card-date">Friday, Mar 13</p>
             </a>
           `;
         }
 
         // Upcoming issues (next 2 Fridays after Mar 14)
-        const upcomingDates = ['Friday, Mar 21', 'Friday, Mar 28'];
+        const upcomingDates = ['Friday, Mar 20', 'Friday, Mar 27'];
         upcomingDates.forEach((dateStr, i) => {
           const nextIssueNum = issueNumber + i + 1;
 
@@ -989,7 +996,7 @@
 
       } catch (e) {
         // Fallback: show next 3 Fridays
-        const fallbackDates = ['Friday, Mar 14', 'Friday, Mar 21', 'Friday, Mar 28'];
+        const fallbackDates = ['Friday, Mar 13', 'Friday, Mar 20', 'Friday, Mar 27'];
         const html = fallbackDates.map((dateStr, i) => `
           <div class="issue-card upcoming reveal">
             <span class="issue-card-badge coming">Coming soon</span>
