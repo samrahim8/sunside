@@ -64,52 +64,48 @@
       50% { opacity: 0.06; }
     }
 
-    .ticker {
-      background: #2D4A3E;
-      color: var(--cream);
-      padding: 0.6rem 0;
-      overflow: hidden;
+    .nav {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
       position: relative;
       z-index: 10;
     }
 
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: tickerScroll 35s linear infinite;
-      animation-delay: 2s;
-    }
-
-    .ticker-track:hover { animation-play-state: paused; }
-
-    .ticker-item {
-      white-space: nowrap;
-      padding: 0 2rem;
-      font-size: 0.8rem;
+    .nav-link {
+      font-size: 0.9rem;
       font-weight: 500;
-      letter-spacing: 0.03em;
-      opacity: 0.85;
-    }
-
-    .ticker-dot {
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background: var(--ochre-light);
-      border-radius: 50%;
-      margin-right: 1rem;
-      vertical-align: middle;
+      color: var(--charcoal-light);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      padding: 0.5rem 0;
       position: relative;
-      top: -1px;
+      transition: color 0.2s ease;
     }
 
-    @keyframes tickerScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .nav-link:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--ochre);
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
     }
 
     .hero {
-      min-height: calc(100vh - 36px);
+      min-height: calc(100vh - 56px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -639,12 +635,12 @@
         opacity: 0.03;
       }
 
-      .ticker-item { padding: 0 1rem; font-size: 0.7rem; }
-      .ticker { padding: 0.5rem 0; }
+      .nav { padding: 0.75rem 1rem; gap: 1.5rem; }
+      .nav-link { font-size: 0.85rem; }
 
       /* Hero: full viewport, content slightly above center */
       .hero {
-        min-height: calc(100svh - 32px);
+        min-height: calc(100svh - 48px);
         padding: 2rem 1.25rem 6rem;
         justify-content: center;
       }
@@ -781,10 +777,6 @@
 
     /* Safe area for notched devices */
     @supports (padding: max(0px)) {
-      .ticker {
-        padding-left: max(0.5rem, env(safe-area-inset-left));
-        padding-right: max(0.5rem, env(safe-area-inset-right));
-      }
       .footer {
         padding-bottom: max(2rem, calc(1rem + env(safe-area-inset-bottom)));
       }
@@ -795,32 +787,11 @@
 
   <div id="grain"></div>
 
-  <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
-      <span class="ticker-item"><span class="ticker-dot"></span>TJ Maxx now open at Hamlin</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>SR-516 bridge beams going up on 429</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Filigree's spring menu is live</span>
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Lucky Charm 5K this Sunday</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>3Natives coming to Flamingo Crossings</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Sushi Kindai coming to Village F</span>
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Homegrown Market this Sunday 8am-12pm</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>73,000 residents + counting</span>
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
-      <span class="ticker-item"><span class="ticker-dot"></span>TJ Maxx now open at Hamlin</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>SR-516 bridge beams going up on 429</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Filigree's spring menu is live</span>
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Lucky Charm 5K this Sunday</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>3Natives coming to Flamingo Crossings</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Sushi Kindai coming to Village F</span>
-      <span class="ticker-item ticker-weather"><span class="ticker-dot"></span><span class="weather-text">☀️ --°F in Horizon West</span></span>
-      <span class="ticker-item"><span class="ticker-dot"></span>Homegrown Market this Sunday 8am-12pm</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>73,000 residents + counting</span>
-    </div>
-  </div>
+  <nav class="nav">
+    <a href="/newsletter" class="nav-link">Newsletter</a>
+    <a href="/neighborhoods" class="nav-link">Neighborhoods</a>
+    <a href="/best-of" class="nav-link">Best Of</a>
+  </nav>
 
   <section class="hero">
     <div class="hero-content">
@@ -974,29 +945,6 @@
         }
       });
     });
-
-    // Fetch Horizon West weather for ticker
-    (async function() {
-      try {
-        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4684&longitude=-81.5981&current=temperature_2m,weather_code&temperature_unit=fahrenheit');
-        const data = await res.json();
-        const temp = Math.round(data.current.temperature_2m);
-        const code = data.current.weather_code;
-
-        let emoji = '☀️';
-        if (code >= 1 && code <= 3) emoji = '⛅';
-        if (code >= 45 && code <= 48) emoji = '🌫️';
-        if (code >= 51 && code <= 67) emoji = '🌧️';
-        if (code >= 80 && code <= 82) emoji = '🌧️';
-        if (code >= 95) emoji = '⛈️';
-
-        const weatherText = `${emoji} ${temp}°F in Horizon West`;
-        document.querySelectorAll('.weather-text').forEach(el => el.textContent = weatherText);
-      } catch (e) {
-        const fallback = '☀️ 80°F in Horizon West';
-        document.querySelectorAll('.weather-text').forEach(el => el.textContent = fallback);
-      }
-    })();
 
     // Dynamic greeting based on time
     (function() {
