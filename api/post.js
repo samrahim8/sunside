@@ -38,7 +38,9 @@ export default async function handler(req, res) {
     const data = await response.json();
     const post = data.data;
 
-    // Debug: return all fields to see what's available
+    // Content can be at content.free.web or free_web_content
+    const content = post.content?.free?.web || post.free_web_content || null;
+
     const result = {
       id: post.id,
       title: post.title,
@@ -47,8 +49,7 @@ export default async function handler(req, res) {
       publishedAt: post.publish_date,
       thumbnail: post.thumbnail_url,
       webUrl: post.web_url,
-      content: post.free_web_content || post.content || null,
-      _allFields: Object.keys(post),
+      content: content,
     };
 
     // Cache for 5 minutes
