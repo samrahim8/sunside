@@ -38,40 +38,59 @@
       min-height: 100vh;
     }
 
-    .header {
-      padding: 1.5rem 2rem;
+    .nav {
+      padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      max-width: 900px;
-      margin: 0 auto;
+      gap: 2rem;
+      position: relative;
+      z-index: 10;
     }
 
-    .header-wordmark {
+    .nav-wordmark {
       font-family: 'Playfair Display', serif;
       font-weight: 800;
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       color: var(--terracotta);
       text-decoration: none;
+      margin-right: 1rem;
     }
 
-    .header-wordmark:hover {
+    .nav-wordmark:hover {
       color: var(--terracotta-light);
     }
 
-    .header-subscribe {
-      padding: 0.6rem 1.25rem;
-      background: var(--terracotta);
-      color: var(--cream);
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
+    .nav-link {
       font-size: 0.9rem;
-      transition: background 0.2s ease;
+      font-weight: 500;
+      color: var(--charcoal-light);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.2s ease;
     }
 
-    .header-subscribe:hover {
-      background: var(--terracotta-light);
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--terracotta);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--ochre);
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
     }
 
     .archive {
@@ -208,12 +227,18 @@
     }
 
     @media (max-width: 640px) {
-      .header {
-        padding: 1.25rem;
+      .nav {
+        padding: 0.75rem 1rem;
+        gap: 1rem;
       }
 
-      .header-wordmark {
-        font-size: 1.5rem;
+      .nav-wordmark {
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
       }
 
       .archive {
@@ -249,10 +274,12 @@
 </head>
 <body>
 
-  <header class="header">
-    <a href="/" class="header-wordmark">SUNSIDE</a>
-    <a href="/#hero-form" class="header-subscribe">Subscribe</a>
-  </header>
+  <nav class="nav">
+    <a href="/" class="nav-wordmark">SUNSIDE</a>
+    <a href="/newsletter" class="nav-link active">Newsletter</a>
+    <a href="/neighborhoods" class="nav-link">Neighborhoods</a>
+    <a href="/best-of" class="nav-link">Best Of</a>
+  </nav>
 
   <main class="archive">
     <p class="section-label">Archive</p>
