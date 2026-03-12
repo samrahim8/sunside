@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Textured background -->
+  <rect width="120" height="120" fill="#8B3A3A"/>
+
+  <!-- Subtle noise texture -->
+  <defs>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <!-- Double frame border - hand drawn style with slight imperfections -->
+  <rect x="12" y="12" width="96" height="96" fill="none" stroke="#FAF6F0" stroke-width="1.5" opacity="0.9"/>
+  <rect x="18" y="18" width="84" height="84" fill="none" stroke="#FAF6F0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Horizon line - slightly wavy for hand-drawn feel -->
+  <path d="M28 72 Q45 71 60 72 Q75 73 92 72" stroke="#FAF6F0" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.9"/>
+
+  <!-- Sun arc - organic curve -->
+  <path d="M32 72 Q46 42 60 38 Q74 42 88 72" stroke="#D4A04A" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Sun rays - hand drawn, varying lengths -->
+  <line x1="60" y1="32" x2="60" y2="24" stroke="#D4A04A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="42" y1="38" x2="36" y2="32" stroke="#D4A04A" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="78" y1="38" x2="84" y2="32" stroke="#D4A04A" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="34" y1="52" x2="26" y2="50" stroke="#D4A04A" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="86" y1="52" x2="94" y2="50" stroke="#D4A04A" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Small accent dots for texture -->
+  <circle cx="48" cy="80" r="1" fill="#FAF6F0" opacity="0.5"/>
+  <circle cx="72" cy="82" r="1" fill="#FAF6F0" opacity="0.4"/>
+  <circle cx="60" cy="85" r="0.8" fill="#FAF6F0" opacity="0.3"/>
+</svg>
